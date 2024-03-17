@@ -115,8 +115,8 @@ plt.legend(list(tickers_destaque_neg), fontsize=8)
 
 
 with st.container():
-    st.title('Analizando os dados das ações do indice IBOV')
-    st.subheader('Utilizando Python para recuperar os dados das ações do Índice IBOV, iremos representar graficamente sua evolução ao longo do período selecionado, além de criar um ranking que destaque as empresas com melhor e pior desempenho.')
+    st.title('Analizando os dados das ações do índice IBOV')
+    st.subheader('Usando Python para extrair dados das ações do Índice IBOV, vamos visualizar graficamente sua trajetória ao longo do período selecionado, ao mesmo tempo em que criamos um ranking destacando as empresas com desempenho superior e inferior.')
     st.text('''
     # Importando as Bibliotecas necessárias
     import yfinance as yf
@@ -125,10 +125,8 @@ with st.container():
     import plotly.graph_objects as go
     from datetime import datetime
 
-    # Definindo as Configirações básicas
+    # Definindo as Configurações básicas
     periodo = '1d' #
-    start = '2023-01-01' # Data de Início dos dados
-    final = '2023-12-31' # Data Final para busca dos Dados
     ibov = 'IBOVDia_15-03-24.csv' # Nome do arquivo do IBOV
     filtro = 5 # Quantidade de empresas para filtro de Ranking
 
@@ -141,7 +139,7 @@ with st.container():
     for codigo in dados['Código']:
         tikers.append(f'{codigo}.SA')
 
-    # Buscando os dados diários para o periodo informado de cada empresa do IBOV
+    # Buscando os dados diários para o periodo informado, para cada empresa do índice IBOV
     dados_acoes = yf.download(tikers, period=periodo, start=start,end=final)
 
     # Função para gerar os Gráficos 
@@ -168,7 +166,7 @@ with st.container():
     st.pyplot(grafico(dados_acoes.index, dados_normalizados, 'Todas as Ações do IBOV - Dados Normalizados'))
 
     st.text('''
-    # Criando uma lista com as empresas com maior ganho no periodo
+    # Criando uma lista com as empresas com maior ganho no período
     lista = []
     for i in dados_normalizados:
         lista.append([i,dados_normalizados[i][-1]])
